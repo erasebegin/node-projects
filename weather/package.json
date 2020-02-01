@@ -1,19 +1,15 @@
 {
-  "name": "salary-calculator",
+  "name": "weather",
   "version": "1.0.0",
   "description": "",
-  "main": "app.js",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "axios": "^0.19.2",
     "chalk": "^3.0.0",
-    "env-cmd": "^10.0.1",
-    "request": "^2.88.0",
-    "unirest": "^0.6.0",
-    "yargs": "^15.1.0"
+    "request": "^2.88.0"
   }
 }

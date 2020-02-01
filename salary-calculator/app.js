@@ -1,35 +1,24 @@
-const yargs = require("yargs");
+const api = require("./conversion_api");
+const chalk = require("chalk");
 
 const perClassCalc = numClasses => {
-	const classPay = 4.5
-	const payPerHr = classPay*2
-	const totalPay = numClasses*payPerHr
-	console.log(`For ${numClasses} classes you will earn $${totalPay}`)
+  const classPay = 4.5;
+  const totalPay = numClasses * classPay;
+
+  console.log(chalk.bold.gray.inverse("For " + chalk.white(numClasses) + " classes you will earn:"));
+  console.log(chalk.cyan.bold("$" + totalPay));
+  api.convertGbp(totalPay, result => {
+    console.log(chalk.magenta.bold("£" + Math.round(result)));
+  });
+  api.convertCny(totalPay, result => {
+    console.log(chalk.yellow.bold("元" + Math.round(result)));
+  });
+};
+
+const userInput = parseInt(process.argv[2]);
+
+if (!userInput) {
+  console.log(chalk.bgRed("Please enter the number of classes you have taught so far"));
+} else {
+  perClassCalc(process.argv[2]);
 }
-
-const avgPayCalc = (classesPerDay, numMonths) => {
-	const classPay = 4.5
-	const avgPay = classPay * classesPerDay * 30 * numMonths
-	console.log(`Average pay for ${numMonths} month(s) is $${avgPay}`)
-}
-
-
-yargs.command({
-	command: "per-class",
-	describe: "calculate salary per number of classes",
-	builder: {
-		classNum:
-		{
-			type: "number",
-			demandOption: true,
-			describe: "number of classes"
-		}
-	},
-	handler (argv) {
-		perClassCalc(argv.classNum)
-	}
-})
-
-yargs.parse();
-
-
