@@ -6,7 +6,7 @@ const forecast = (lat, long, callback) => {
     encodeURIComponent(lat) +
     "," +
     encodeURIComponent(long) +
-    "?exclude=minutely,hourly,alerts,flags&units=si";
+    "?exclude=minutely,daily,hourly,alerts,flags&units=si";
 
   request(
     {
@@ -14,9 +14,9 @@ const forecast = (lat, long, callback) => {
       json: true
     },
     (error, response) => {
-      const { error: apiError, daily, currently } = response.body;
+      const { error: apiError, currently } = response.body;
       const { temperature, precipProbability: precipitation } = currently;
-      const { summary } = daily;
+      const { summary } = currently;
 
       if (error) {
         callback("Could not connect to weather service", undefined);
