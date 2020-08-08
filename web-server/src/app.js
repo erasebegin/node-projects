@@ -5,6 +5,7 @@ const geocode = require("./geocode");
 const forecast = require("./forecast");
 
 const app = express();
+const port = process.env.PORT || 3001;
 
 //using path function with dirname to store path values
 const publicDirPath = path.join(__dirname, "../public");
@@ -111,6 +112,6 @@ app.get("*", (req, res) => {
 });
 
 //setting listening port
-app.listen(3002, () => {
-  console.log("server is running on port 3002");
+app.listen(port, () => {
+  console.log("server is running on port "+port);
 });

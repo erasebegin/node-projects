@@ -19,7 +19,7 @@ weatherForm.addEventListener("submit", (e) => {
   weatherOutput3.textContent = ""
 
   fetch(
-    "http://localhost:3002/weather?address=" + encodeURIComponent(location)
+    "/weather?address=" + encodeURIComponent(location)
   ).then((response) => {
     response.json().then((data) => {
       if (data.error) {
